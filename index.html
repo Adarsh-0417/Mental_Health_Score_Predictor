@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MindScore AI — Understand Your Mental Wellness</title>
+<meta name="description" content="An AI-powered assessment that estimates your mental wellness score from lifestyle, academic, sleep, and stress patterns.">
+
+<!-- Google Fonts: Fraunces (display), Manrope (body), IBM Plex Mono (data) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<!-- Lucide icons -->
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Ambient breathing backdrop, sits behind everything -->
+<div class="ambient-sky" aria-hidden="true">
+  <div class="breath-ring ring-a"></div>
+  <div class="breath-ring ring-b"></div>
+  <div class="breath-ring ring-c"></div>
+</div>
+
+<!-- ============ NAVBAR ============ -->
+<header class="navbar" id="navbar">
+  <div class="navbar-inner">
+    <a href="#home" class="brand">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 32 32" width="26" height="26">
+          <circle cx="16" cy="16" r="6.5" fill="none" stroke="currentColor" stroke-width="1.6"/>
+          <circle cx="16" cy="16" r="11.5" fill="none" stroke="currentColor" stroke-width="1.1" opacity="0.55"/>
+          <circle cx="16" cy="16" r="2" fill="currentColor"/>
+        </svg>
+      </span>
+      <span class="brand-name">MindScore <em>AI</em></span>
+    </a>
+
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#home">Home</a>
+      <a href="#assessment">Assessment</a>
+      <a href="#about">About</a>
+    </nav>
+
+    <div class="navbar-right">
+      <span class="badge">
+        <span class="badge-dot" aria-hidden="true"></span>
+        AI Powered
+      </span>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="home">
+    <div class="hero-inner">
+      <div class="hero-copy reveal">
+        <p class="eyebrow">A quiet check-in for a noisy schedule</p>
+        <h1 class="hero-title">Understand Your<br>Mental Wellness</h1>
+        <p class="hero-sub">
+          An AI-powered assessment that estimates your mental health score using
+          lifestyle, academic, sleep, physical activity, stress, and social-media patterns.
+        </p>
+        <div class="hero-actions">
+          <a href="#assessment" class="btn btn-primary">
+            Start Assessment
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="#about" class="btn btn-ghost">How It Works</a>
+        </div>
+
+        <div class="hero-stats">
+          <div class="stat-card">
+            <span class="stat-value">AI</span>
+            <span class="stat-label">Powered</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-value">12+</span>
+            <span class="stat-label">Behavioral Factors</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-value">Instant</span>
+            <span class="stat-label">Prediction</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual reveal" aria-hidden="true">
+        <div class="visual-ring-wrap">
+          <svg class="visual-rings" viewBox="0 0 400 400">
+            <circle cx="200" cy="200" r="70" class="vr vr-1"/>
+            <circle cx="200" cy="200" r="115" class="vr vr-2"/>
+            <circle cx="200" cy="200" r="160" class="vr vr-3"/>
+            <g class="vr-nodes">
+              <circle cx="200" cy="40" r="4"/>
+              <circle cx="340" cy="200" r="4"/>
+              <circle cx="200" cy="360" r="4"/>
+              <circle cx="60" cy="200" r="4"/>
+            </g>
+          </svg>
+          <div class="visual-core">
+            <span class="visual-core-label">wellness</span>
+            <span class="visual-core-sub">signal</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ASSESSMENT ============ -->
+  <section class="assessment" id="assessment">
+    <div class="section-inner">
+      <p class="eyebrow center reveal">Assessment</p>
+      <h2 class="section-title center reveal">A few honest answers, four short steps</h2>
+
+      <div class="assessment-card reveal">
+
+        <!-- Progress -->
+        <div class="progress-wrap">
+          <div class="progress-track">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+          <ol class="progress-steps" id="progressSteps">
+            <li class="progress-step is-active" data-step="1"><span>1</span>Personal</li>
+            <li class="progress-step" data-step="2"><span>2</span>Academic</li>
+            <li class="progress-step" data-step="3"><span>3</span>Habits</li>
+            <li class="progress-step" data-step="4"><span>4</span>Stress</li>
+          </ol>
+        </div>
+
+        <form id="assessmentForm" novalidate>
+
+          <!-- STEP 1 -->
+          <fieldset class="form-step is-active" data-step="1">
+            <legend class="step-legend">Personal information</legend>
+
+            <div class="field">
+              <label for="Age">Age</label>
+              <input type="number" id="Age" name="Age" min="10" max="100" placeholder="e.g. 21" required>
+              <p class="field-error" data-error-for="Age"></p>
+            </div>
+
+            <div class="field">
+              <label for="Gender">Gender</label>
+              <select id="Gender" name="Gender" required>
+                <option value="" disabled selected>Select gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              </select>
+              <p class="field-error" data-error-for="Gender"></p>
+            </div>
+
+            <div class="field">
+              <label for="Country">Country</label>
+              <input type="text" id="Country" name="Country" list="countryList" placeholder="e.g. India" autocomplete="off" required>
+              <datalist id="countryList">
+                <option value="India"></option>
+                <option value="USA"></option>
+                <option value="Canada"></option>
+                <option value="Australia"></option>
+                <option value="UK"></option>
+                <option value="Germany"></option>
+                <option value="Mexico"></option>
+                <option value="Turkey"></option>
+                <option value="France"></option>
+              </datalist>
+              <p class="field-hint">Not on the list? Type your country — it will be grouped as "Other" by the model.</p>
+              <p class="field-error" data-error-for="Country"></p>
+            </div>
+          </fieldset>
+
+          <!-- STEP 2 -->
+          <fieldset class="form-step" data-step="2">
+            <legend class="step-legend">Academic &amp; social media</legend>
+
+            <div class="field">
+              <label for="Academic_Level">Academic level</label>
+              <select id="Academic_Level" name="Academic_Level" required>
+                <option value="" disabled selected>Select academic level</option>
+                <option value="Undergraduate">Undergraduate</option>
+                <option value="Graduate">Graduate</option>
+                <option value="High school">High school</option>
+              </select>
+              <p class="field-error" data-error-for="Academic_Level"></p>
+            </div>
+
+            <div class="field">
+              <label for="Most_Used_Platform">Most used platform</label>
+              <select id="Most_Used_Platform" name="Most_Used_Platform" required>
+                <option value="" disabled selected>Select platform</option>
+                <option>Facebook</option>
+                <option>LinkedIn</option>
+                <option>Instagram</option>
+                <option>Snapchat</option>
+                <option>Twitter</option>
+                <option>YouTube</option>
+                <option>TikTok</option>
+                <option>LINE</option>
+                <option>KakaoTalk</option>
+                <option>VKontakte</option>
+                <option>WhatsApp</option>
+                <option>WeChat</option>
+              </select>
+              <p class="field-error" data-error-for="Most_Used_Platform"></p>
+            </div>
+
+            <div class="field">
+              <label for="Purpose_Of_Use">Purpose of use</label>
+              <select id="Purpose_Of_Use" name="Purpose_Of_Use" required>
+                <option value="" disabled selected>Select purpose</option>
+                <option value="Networking">Networking</option>
+                <option value="Education">Education</option>
+                <option value="Entertainment">Entertainment</option>
+                <option value="News">News</option>
+              </select>
+              <p class="field-error" data-error-for="Purpose_Of_Use"></p>
+            </div>
+          </fieldset>
+
+          <!-- STEP 3 -->
+          <fieldset class="form-step" data-step="3">
+            <legend class="step-legend">Daily habits</legend>
+
+            <div class="field field-slider">
+              <div class="slider-label-row">
+                <label for="Avg_Daily_Usage_Hours">Average daily screen usage</label>
+                <output for="Avg_Daily_Usage_Hours" id="Avg_Daily_Usage_Hours_out">4.5 hrs</output>
+              </div>
+              <input type="range" id="Avg_Daily_Usage_Hours" name="Avg_Daily_Usage_Hours" min="0" max="24" step="0.5" value="4.5" required>
+              <p class="field-error" data-error-for="Avg_Daily_Usage_Hours"></p>
+            </div>
+
+            <div class="field">
+              <label for="Daily_Unlocks">Daily phone unlocks</label>
+              <input type="number" id="Daily_Unlocks" name="Daily_Unlocks" min="0" placeholder="e.g. 30" required>
+              <p class="field-error" data-error-for="Daily_Unlocks"></p>
+            </div>
+
+            <div class="field field-slider">
+              <div class="slider-label-row">
+                <label for="Study_Hours">Study hours per day</label>
+                <output for="Study_Hours" id="Study_Hours_out">5 hrs</output>
+              </div>
+              <input type="range" id="Study_Hours" name="Study_Hours" min="0" max="24" step="0.5" value="5" required>
+              <p class="field-error" data-error-for="Study_Hours"></p>
+            </div>
+
+            <div class="field field-slider">
+              <div class="slider-label-row">
+                <label for="Physical_Activity_Hours">Physical activity per day</label>
+                <output for="Physical_Activity_Hours" id="Physical_Activity_Hours_out">1 hr</output>
+              </div>
+              <input type="range" id="Physical_Activity_Hours" name="Physical_Activity_Hours" min="0" max="24" step="0.5" value="1" required>
+              <p class="field-error" data-error-for="Physical_Activity_Hours"></p>
+            </div>
+
+            <div class="field field-slider">
+              <div class="slider-label-row">
+                <label for="Sleep_Hours_Per_Night">Sleep per night</label>
+                <output for="Sleep_Hours_Per_Night" id="Sleep_Hours_Per_Night_out">7 hrs</output>
+              </div>
+              <input type="range" id="Sleep_Hours_Per_Night" name="Sleep_Hours_Per_Night" min="0" max="24" step="0.5" value="7" required>
+              <p class="field-error" data-error-for="Sleep_Hours_Per_Night"></p>
+            </div>
+          </fieldset>
+
+          <!-- STEP 4 -->
+          <fieldset class="form-step" data-step="4">
+            <legend class="step-legend">Stress</legend>
+
+            <div class="field field-radio-group">
+              <span class="radio-group-label">Stress level</span>
+              <div class="radio-pills" role="radiogroup" aria-label="Stress level">
+                <label class="radio-pill">
+                  <input type="radio" name="Stress_Level" value="Low" required>
+                  <span>Low</span>
+                </label>
+                <label class="radio-pill">
+                  <input type="radio" name="Stress_Level" value="Medium">
+                  <span>Medium</span>
+                </label>
+                <label class="radio-pill">
+                  <input type="radio" name="Stress_Level" value="High">
+                  <span>High</span>
+                </label>
+                <label class="radio-pill">
+                  <input type="radio" name="Stress_Level" value="Very High">
+                  <span>Very High</span>
+                </label>
+              </div>
+              <p class="field-error" data-error-for="Stress_Level"></p>
+            </div>
+          </fieldset>
+
+          <!-- Nav buttons -->
+          <div class="form-nav">
+            <button type="button" class="btn btn-ghost" id="prevBtn">Back</button>
+            <button type="button" class="btn btn-primary" id="nextBtn">Continue</button>
+            <button type="submit" class="btn btn-primary btn-submit" id="submitBtn" hidden>
+              <span class="btn-label">Predict My Score</span>
+            </button>
+          </div>
+
+          <p class="api-error" id="apiError" role="alert" hidden></p>
+        </form>
+
+        <!-- Loading state -->
+        <div class="loading-state" id="loadingState" hidden>
+          <div class="loading-ring" aria-hidden="true"></div>
+          <p>Analyzing your responses…</p>
+        </div>
+
+        <!-- Result state -->
+        <div class="result-state" id="resultState" hidden>
+          <p class="eyebrow center">Your Mental Health Score</p>
+
+          <div class="score-ring-wrap">
+            <svg class="score-ring" viewBox="0 0 220 220">
+              <circle cx="110" cy="110" r="96" class="score-track"/>
+              <circle cx="110" cy="110" r="96" class="score-progress" id="scoreProgress"/>
+            </svg>
+            <div class="score-core">
+              <span class="score-value" id="scoreValue">0</span>
+              <span class="score-max">/ 100</span>
+            </div>
+          </div>
+
+          <p class="score-classification" id="scoreClassification"></p>
+          <p class="score-note" id="scoreNote"></p>
+
+          <p class="disclaimer">
+            This AI-generated score is an estimate based on the information provided and is not a
+            medical diagnosis. If you are concerned about your mental health, consider speaking with
+            a qualified professional.
+          </p>
+
+          <div class="result-actions">
+            <button type="button" class="btn btn-ghost" id="retakeBtn">Take Assessment Again</button>
+            <a href="#home" class="btn btn-primary" id="homeBtn">Back to Home</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT / HOW IT WORKS ============ -->
+  <section class="about" id="about">
+    <div class="section-inner">
+      <p class="eyebrow center reveal">How it works</p>
+      <h2 class="section-title center reveal">From a form to a signal, in three steps</h2>
+
+      <div class="about-grid">
+        <div class="about-card reveal">
+          <span class="about-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 2v18M2 11h18" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+          </span>
+          <h3>Enter your information</h3>
+          <p>Answer a short, structured questionnaire about your routine — academics, sleep, activity, and social media habits.</p>
+        </div>
+        <div class="about-card reveal">
+          <span class="about-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="1.4"/><circle cx="11" cy="11" r="2.2" fill="currentColor"/></svg>
+          </span>
+          <h3>The model analyzes patterns</h3>
+          <p>Your answers are sent to a FastAPI machine-learning backend, which weighs the behavioral factors you provided.</p>
+        </div>
+        <div class="about-card reveal">
+          <span class="about-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M4 12l5 5 9-11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <h3>Receive your estimated score</h3>
+          <p>A single estimated wellness score is returned instantly, along with a plain-language classification.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="brand-mark" aria-hidden="true">
+        <svg viewBox="0 0 32 32" width="20" height="20">
+          <circle cx="16" cy="16" r="6.5" fill="none" stroke="currentColor" stroke-width="1.6"/>
+          <circle cx="16" cy="16" r="11.5" fill="none" stroke="currentColor" stroke-width="1.1" opacity="0.55"/>
+          <circle cx="16" cy="16" r="2" fill="currentColor"/>
+        </svg>
+      </span>
+      <div>
+        <p class="footer-name">MindScore AI</p>
+        <p class="footer-tag">AI-powered mental wellness assessment</p>
+      </div>
+    </div>
+
+    <a class="footer-github" href="#" aria-label="View source on GitHub">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12a11.5 11.5 0 0 0 7.87 10.93c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.54-3.88-1.54-.52-1.34-1.28-1.7-1.28-1.7-1.04-.72.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.75 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.18-3.08-.12-.29-.51-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.05 11.05 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.24 2.76.12 3.05.74.8 1.18 1.82 1.18 3.08 0 4.41-2.69 5.38-5.25 5.67.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg>
+    </a>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 MindScore AI. For informational purposes only — not a substitute for professional care.</p>
+  </div>
+</footer>
+
+<script src="script.js" defer></script>
+</body>
+</html>
