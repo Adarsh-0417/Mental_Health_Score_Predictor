@@ -4,9 +4,6 @@ An AI-powered Machine Learning web application that predicts an estimated mental
 
 The project combines a **Machine Learning model**, **FastAPI backend**, and a **responsive HTML/CSS/JavaScript frontend** to provide real-time predictions through a web interface.
 
-> ⚠️ **Disclaimer:** This application provides an AI-generated estimate based on the information provided by the user. It is not a medical diagnosis and should not be considered a substitute for professional mental-health advice.
-
----
 
 ## 🌐 Live Demo
 
