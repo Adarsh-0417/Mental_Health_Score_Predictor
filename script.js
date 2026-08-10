@@ -1,4 +1,4 @@
-const API_BASE_URL = "https://mental-health-score-predictor-1-syqz.onrender.com";
+const API_BASE_URL = "https://mental-health-score-predictor-3-i9xn.onrender.com";
 const PREDICT_ENDPOINT = `${API_BASE_URL}/predict`;
 
 const form = document.getElementById("assessmentForm");
