@@ -1,225 +1,75 @@
 # 🧠 Mental Health Score Predictor
 
-An AI-powered Machine Learning web application that predicts an estimated mental health score based on lifestyle, academic, sleep, physical activity, stress, and social-media usage patterns.
+An end-to-end Machine Learning application that predicts an estimated mental health score from academic, lifestyle, sleep, stress, and social-media usage patterns.
 
-The project combines a **Machine Learning model**, **FastAPI backend**, and a **responsive HTML/CSS/JavaScript frontend** to provide real-time predictions through a web interface.
+The project combines a **Scikit-learn regression pipeline**, **FastAPI backend**, and **responsive web frontend** to provide real-time predictions through a deployed REST API.
 
+---
 
 ## 🌐 Live Demo
-
-### Backend API
 
 **Live API:**  
 https://mental-health-score-predictor-4-smn6.onrender.com
 
-> The Render free instance may take some time to wake up after a period of inactivity.
+> The application is deployed on Render. The free instance may take a few moments to wake up after inactivity.
 
-✨ Features
+---
 
-🧠 Machine Learning based mental health score prediction
+## 🎯 Project Overview
 
-📊 Lifestyle and behavioral factor analysis
+Mental health can be influenced by multiple behavioral and lifestyle factors. This project explores these relationships by using structured student data to estimate a **Mental Health Score**.
 
-⚡ FastAPI REST API
+The system accepts user information such as:
 
-🎨 Modern responsive frontend
+- Academic level
+- Study hours
+- Sleep duration
+- Physical activity
+- Stress level
+- Social-media usage
+- Daily device/app unlocks
+- Most-used platform
+- Purpose of social-media usage
+- Age, gender and country
 
-✅ Input validation using Pydantic
+The trained Machine Learning model processes these inputs and returns an estimated mental health score.
 
-🔄 Real-time prediction through API requests
+---
 
-🌍 Country-based feature grouping
+## 📊 Model Performance
 
-📱 Responsive user interface
+Multiple regression approaches were evaluated using standard regression metrics.
 
-☁️ Cloud deployment using Render
+| Model | R² Score | MAE | RMSE |
+|------|---------:|----:|-----:|
+| Linear Regression | 0.7398 | 0.5362 | 0.6760 |
+| **Random Forest** | **0.8779** | **0.3467** | **0.4632** |
+| Random Forest (Tuned) | 0.8651 | 0.3691 | 0.4868 |
 
-🔗 Frontend-backend integration using REST API
+### Final Model
 
-🔐 CORS-enabled backend
+The **Random Forest Regressor** achieved the strongest test performance:
 
-📦 Serialized ML model using Joblib
+- **R²:** 0.8779
+- **MAE:** 0.3467
+- **RMSE:** 0.4632
 
-🧩 Prediction Factors
+This represents a **13.81 percentage-point improvement in R²** over the Linear Regression baseline.
 
+---
 
-The model uses the following user inputs:
+## ⚙️ Machine Learning Pipeline
 
-Feature	Description
+The project uses a structured Scikit-learn preprocessing and modeling pipeline.
 
-Age	Age of the student
+### Numerical Features
 
-Gender	Gender of the student
+- Standard scaling
+- Log transformation of `Study_Hours` to handle skewness
 
-Country	Country of the student
+### Ordinal Feature
 
-Academic Level	Current academic level
+`Stress_Level` is encoded using an ordered mapping:
 
-Most Used Platform	Most frequently used social-media platform
-
-Purpose Of Use	Primary purpose of social-media usage
-
-Average Daily Usage Hours	Average daily social-media usage
-
-Daily Unlocks	Number of daily device/app unlocks
-
-Study Hours	Daily study duration
-
-Physical Activity Hours	Daily physical activity duration
-
-Sleep Hours Per Night	Average sleep duration
-
-Stress Level	Current stress level
-
-
-The backend validates these fields using a Pydantic model before sending the data to the ML pipeline.
-
-
-
-🛠️ Tech Stack
-
-Machine Learning
-
-Python
-
-Scikit-learn
-
-Pandas
-
-Joblib
-
-Backend
-
-FastAPI
-
-Pydantic
-
-Uvicorn
-
-CORS Middleware
-
-Frontend
-
-HTML5
-
-CSS3
-
-JavaScript
-
-Deployment
-
-GitHub
-
-Render
-
-
-📂 Project Structure
-
-Mental_Health_Score_Predictor/
-
-│
-├── .venv/
-
-│
-├── __pycache__/
-
-│
-├── basic.ipynb
-
-│
-├── main.py
-
-├── Mental_Health_Model.pkl
-
-│
-├── index.html
-
-├── style.css
-
-├── script.js
-
-│
-├── requirements.txt
-
-├── .python-version
-
-│
-├── README.md
-
-└── LICENSE
-
-⚙️ Installation & Setup
-
-1. Clone the Repository
-git clone https://github.com/Adarsh-0417/Mental_Health_Score_Predictor.git
-
-
-2. Navigate to the Project
-cd Mental_Health_Score_Predictor
-
-
-3. Create a Virtual Environment
-python -m venv .venv
-
-
-4. Activate the Virtual Environment
-
-Windows
-.venv\Scripts\activate
-macOS / Linux
-source .venv/bin/activate
-
-
-5. Install Dependencies
-pip install -r requirements.txt
-▶️ Run the Backend Locally
-Start the FastAPI server using:
-uvicorn main:app --reload --port 2200
-The backend will be available at:
-http://127.0.0.1:2200
-
-
-🧠 What This Project Demonstrates
-
-This project demonstrates practical experience with:
-
-Machine Learning model deployment
-
-Model serialization using Joblib
-
-Scikit-learn pipelines
-
-FastAPI REST API development
-
-Pydantic data validation
-
-Pandas data preprocessing
-
-Frontend-backend integration
-
-REST API communication
-
-CORS configuration
-
-Local API testing
-
-Cloud deployment
-
-Dependency version management
-
-Production model compatibility
-
-
-👨‍💻 Author
-
-Adarsh Sharma
-
-
-📄 License
-
-This project is licensed under the MIT License.
-
-See the LICENSE file for more information.
-
-⭐ If you found this project useful, consider giving the repository a star!
-
+```text
+Low → Medium → High → Very High
