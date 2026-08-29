@@ -144,3 +144,64 @@ FastAPI for model serving
 
 The deployed backend provides a REST endpoint for real-time prediction requests.
 
+###🛠️ Tech Stack
+
+##Machine Learning
+Python
+Pandas
+Scikit-learn
+Joblib
+
+##Backend
+FastAPI
+Pydantic
+Uvicorn
+CORS Middleware
+
+##Frontend
+HTML5
+CSS3
+JavaScript
+
+##Deployment
+GitHub
+Render
+
+###▶️ Run Locally
+#1. Clone the repository
+git clone https://github.com/Adarsh-0417/Mental_Health_Score_Predictor.git
+cd Mental_Health_Score_Predictor
+#2. Create a virtual environment
+python -m venv .venv
+#3. Activate the environment
+Windows:
+.venv\Scripts\activate
+macOS / Linux:
+source .venv/bin/activate
+#4. Install dependencies
+pip install -r requirements.txt
+#5. Start the FastAPI server
+uvicorn main:app --reload --port 2200
+The API will be available at:
+http://127.0.0.1:2200
+
+###📚 What This Project Demonstrates
+End-to-end Machine Learning workflow
+Regression model evaluation
+Feature preprocessing and transformation
+Scikit-learn pipelines
+Random Forest modeling
+Hyperparameter search
+Model serialization with Joblib
+FastAPI REST API development
+Pydantic request validation
+Frontend-backend integration
+CORS configuration
+Cloud deployment
+Production model inference
+
+###👨‍💻 Author
+
+Adarsh Sharma
+
+
