@@ -146,41 +146,41 @@ The deployed backend provides a REST endpoint for real-time prediction requests.
 
 ### 🛠️ Tech Stack
 
-## Machine Learning
+### Machine Learning
 Python
 Pandas
 Scikit-learn
 Joblib
 
-## Backend
+### Backend
 FastAPI
 Pydantic
 Uvicorn
 CORS Middleware
 
-## Frontend
+### Frontend
 HTML5
 CSS3
 JavaScript
 
-## Deployment
+### Deployment
 GitHub
 Render
 
 ### ▶️ Run Locally
-# 1. Clone the repository
+#### 1. Clone the repository
 git clone https://github.com/Adarsh-0417/Mental_Health_Score_Predictor.git
 cd Mental_Health_Score_Predictor
-# 2. Create a virtual environment
+#### 2. Create a virtual environment
 python -m venv .venv
-# 3. Activate the environment
+#### 3. Activate the environment
 Windows:
 .venv\Scripts\activate
 macOS / Linux:
 source .venv/bin/activate
-# 4. Install dependencies
+#### 4. Install dependencies
 pip install -r requirements.txt
-# 5. Start the FastAPI server
+#### 5. Start the FastAPI server
 uvicorn main:app --reload --port 2200
 The API will be available at:
 http://127.0.0.1:2200
