@@ -65,21 +65,21 @@ The project uses a structured Scikit-learn preprocessing and modeling pipeline.
 ### Numerical Features
 
 - Standard scaling
-- Log transformation of `Study_Hours` to handle skewness
+- Log transformation of Study_Hours to handle skewness
 
 ### Ordinal Feature
 Stress_Level is encoded using an ordered mapping:
 Low → Medium → High → Very High
 
-###Categorical Features
+### Categorical Features
 
 Categorical variables are transformed using OneHotEncoder with unknown-category handling.
 
-###Country Feature
+### Country Feature
 
 Countries are grouped into broader categories before being passed into the model, reducing unnecessary categorical sparsity.
 
-###Model
+### Model
 RandomForestRegressor
 ├── n_estimators: 200
 ├── max_depth: 15
@@ -87,7 +87,7 @@ RandomForestRegressor
 ├── min_samples_leaf: 2
 └── random_state: 42
 
-###🧠 Input Features
+### 🧠 Input Features
 
 Feature	Description: 
 Age	Student's -> age
@@ -103,7 +103,7 @@ Physical Activity Hours	-> Daily physical activity duration
 Sleep Hours Per Night	-> Average sleep duration
 Stress Level	-> Reported stress level
 
-###🛡️ API Validation
+### 🛡️ API Validation
 
 Incoming requests are validated using Pydantic before being passed to the Machine Learning pipeline.
 
@@ -116,7 +116,7 @@ Only validated data reaches the model
 
 The backend also includes CORS configuration for frontend-backend communication.
 
-###💻 Frontend
+### 💻 Frontend
 
 The application includes a responsive web interface built using:
 
@@ -126,7 +126,7 @@ JavaScript
 
 The frontend communicates with the FastAPI backend through REST API requests and displays the prediction dynamically.
 
-###📦 Model Serialization
+### 📦 Model Serialization
 
 The trained Scikit-learn pipeline is serialized using Joblib:
 
@@ -134,7 +134,7 @@ Mental_Health_Model.pkl
 
 This allows the complete preprocessing + prediction pipeline to be loaded directly by the backend without rebuilding the model during inference.
 
-###☁️ Deployment
+### ☁️ Deployment
 
 The application is deployed using:
 
@@ -144,48 +144,48 @@ FastAPI for model serving
 
 The deployed backend provides a REST endpoint for real-time prediction requests.
 
-###🛠️ Tech Stack
+### 🛠️ Tech Stack
 
-##Machine Learning
+## Machine Learning
 Python
 Pandas
 Scikit-learn
 Joblib
 
-##Backend
+## Backend
 FastAPI
 Pydantic
 Uvicorn
 CORS Middleware
 
-##Frontend
+## Frontend
 HTML5
 CSS3
 JavaScript
 
-##Deployment
+## Deployment
 GitHub
 Render
 
-###▶️ Run Locally
-#1. Clone the repository
+### ▶️ Run Locally
+# 1. Clone the repository
 git clone https://github.com/Adarsh-0417/Mental_Health_Score_Predictor.git
 cd Mental_Health_Score_Predictor
-#2. Create a virtual environment
+# 2. Create a virtual environment
 python -m venv .venv
-#3. Activate the environment
+# 3. Activate the environment
 Windows:
 .venv\Scripts\activate
 macOS / Linux:
 source .venv/bin/activate
-#4. Install dependencies
+# 4. Install dependencies
 pip install -r requirements.txt
-#5. Start the FastAPI server
+# 5. Start the FastAPI server
 uvicorn main:app --reload --port 2200
 The API will be available at:
 http://127.0.0.1:2200
 
-###📚 What This Project Demonstrates
+### 📚 What This Project Demonstrates
 End-to-end Machine Learning workflow
 Regression model evaluation
 Feature preprocessing and transformation
@@ -200,7 +200,7 @@ CORS configuration
 Cloud deployment
 Production model inference
 
-###👨‍💻 Author
+### 👨‍💻 Author
 
 Adarsh Sharma
 
