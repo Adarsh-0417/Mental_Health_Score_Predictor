@@ -24,7 +24,7 @@ The system accepts user information such as:
 - Academic level
 - Study hours
 - Sleep duration
-- Physical activity
+- Physical activity    
 - Stress level
 - Social-media usage
 - Daily device/app unlocks
